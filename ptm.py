@@ -19,9 +19,9 @@ def decodeName(name):
 	if type(name) == str:
 		try:
 			name = name.decode('utf8')
-			print name
+			print(name)
 		except:
-			print name
+			print(name)
 			name = name.decode('utf-16')
 	return name
 
@@ -35,23 +35,23 @@ def convertToTime(epoch):
 	return day+"-"+month+"-"+year+" ("+hour+":"+minutes+")"
 
 
-print sys.getdefaultencoding()
-print sys.getfilesystemencoding()
-walk_dir = "D://"
+print(sys.getdefaultencoding())
+print(sys.getfilesystemencoding())
+walk_dir = "C://"
 listofFile = []
 filetime_o = SortedDict()
 nfile = 0
 for root,subdirs,files in os.walk(str(walk_dir)):
 	for filename in files:
 		file_path = os.path.join(root,filename)
-		#print file_path
+		print(file_path)
 		try:
 			time_struct =  time.localtime(os.path.getctime(file_path))
 			filetime_o[os.path.getctime(file_path)] = file_path
 			nfile = nfile + 1
 		except:
-			print file_path
+			print(file_path)
 
 
 for i in filetime_o:
-	print convertToTime(i) +" : " + filetime_o[i]
+	print(convertToTime(i) +" : " + filetime_o[i])
